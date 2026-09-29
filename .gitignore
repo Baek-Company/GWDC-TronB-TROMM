@@ -1,0 +1,33 @@
+# === Dependencies ===
+node_modules/
+.pnpm-store/
+
+# === Build output ===
+dist/
+
+# === Environment & secrets ===
+.env.local
+.env.*.local
+.env.production
+
+# === Evidence / local data ===
+evidence/
+
+# === Logs ===
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# === OS generated ===
+.DS_Store
+Thumbs.db
+
+# === IDE / Editor ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# === Lock files (pnpm project — keep pnpm-lock.yaml only) ===
+package-lock.json

@@ -1,0 +1,17 @@
+{
+  "_comment": "가상(synthetic) 값. 실제 금리가 아니며 화면에 '가상 시연' 배지로 표시된다. 키·지갑 없이 흐름을 확인하는 용도.",
+  "jusdt": { "baseRate": "0.05", "liquidity": "5000000", "active": true },
+  "jusdd": { "baseRate": "0.06", "liquidity": "5000000", "active": true },
+  "psm": { "feeIn": "0", "feeOut": "0", "sellEnabled": true, "buyEnabled": true, "entryCapacity": "10000000", "exitLiquidity": "10000000" },
+  "jtrx": { "baseRate": "0.03", "liquidity": "1000000", "active": true },
+  "staking": { "baseRate": "0.07", "srAddress": "TJRabPrwbZy45sbavfcjinPJC18kjpRTv8", "unfreezeDelayDays": 14, "voteDelayDays": "0.25" },
+  "swap": {
+    "router": "synthetic-sunswap-router",
+    "pair": "synthetic-usdt-wtrx",
+    "reserveUsdt": "10000000",
+    "reserveTrx": "30000000",
+    "feeNumerator": 997,
+    "costs": { "toTrx": { "energy": 120000, "bandwidth": 320 }, "toUsdt": { "energy": 120000, "bandwidth": 320 } }
+  },
+  "costBasis": { "energyFeeSun": 100, "bandwidthFeeSun": 1000, "trxPerUsdt": "3", "psmEnergy": { "sell": 250000, "buy": 310000, "sampleSize": 0 } }
+}
