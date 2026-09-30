@@ -1,0 +1,11 @@
+#!/bin/zsh
+set -eu
+cd "$(dirname "$0")/.."
+if [[ -x /opt/homebrew/opt/node@24/bin/node ]]; then
+  export PATH="/opt/homebrew/opt/node@24/bin:$PATH"
+fi
+if [[ "$(node -p 'process.versions.node.split(".")[0]')" != 24 ]]; then
+  print -u2 'Node.js 24 LTS가 필요합니다. .nvmrc 또는 .node-version을 사용하세요.'
+  exit 1
+fi
+exec npm "$@"

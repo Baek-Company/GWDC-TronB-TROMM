@@ -1,0 +1,57 @@
+.plan-dated-allocation {
+  margin: 0 0 20px;
+  padding: 22px;
+  border: 1px solid #d6e7d9;
+  border-radius: 14px;
+  background: #f8fcf8;
+  color: #31463a;
+}
+.plan-dated-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+.plan-dated-head h3 { margin: 0 0 5px; font-size: 17px; }
+.plan-dated-head p, .plan-dated-allocation > p { color: #687e70; font-size: 12px; line-height: 1.6; }
+.plan-dated-head p { margin: 0 0 16px; }
+.plan-dated-head strong { white-space: nowrap; border-radius: 99px; background: #e6f3e8; color: #307451; padding: 7px 10px; font-size: 11px; }
+.plan-dated-allocation .table-scroll { max-height: none; overflow-x: auto; }
+.plan-dated-allocation table { min-width: 660px; background: #fff; border-radius: 9px; }
+.plan-dated-allocation td:first-child { display: table-cell; }
+.plan-dated-allocation td small { display: block; margin-top: 3px; color: #8a9b8d; }
+.plan-dated-allocation > p:last-child { margin-bottom: 0; }
+.plan-dated-actions { display: flex; align-items: center; gap: 16px; margin-top: 16px; }
+.plan-dated-actions .plan-select { width: auto; min-width: 230px; margin: 0; }
+.plan-dated-actions a { color: #287554; font-size: 12px; font-weight: 700; }
+.nile-fee-evidence {
+  margin-top: 14px;
+  padding: 15px 16px;
+  border: 1px solid #dcebe6;
+  border-radius: 12px;
+  background: #f7fbf9;
+  color: #365653;
+  font-size: 12px;
+  line-height: 1.65;
+}
+.nile-fee-head { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 7px; }
+.nile-fee-head strong { color: #193d35; font-size: 13px; }
+.nile-fee-head span { border-radius: 99px; background: #e6f3e8; padding: 2px 8px; color: #287554; font-weight: 700; }
+.nile-fee-evidence[data-status="미산정"] .nile-fee-head span,
+.nile-fee-evidence[data-status="근거 미완전·만료"] .nile-fee-head span,
+.nile-fee-evidence[data-status="근거 없음"] .nile-fee-head span { background: #fff0e7; color: #aa6944; }
+.nile-fee-evidence p { margin: 7px 0; }
+.nile-fee-figures { display: grid; grid-template-columns: minmax(0, 1fr); gap: 7px; margin: 12px 0; }
+.nile-fee-figures span { display: flex; justify-content: space-between; gap: 12px; border-bottom: 1px solid #e3eee9; padding-bottom: 5px; }
+.nile-fee-figures strong { color: #193d35; white-space: nowrap; }
+.nile-fee-reason { color: #936544; }
+.nile-fee-reserve-alert { border-radius: 7px; background: #fff0e7; padding: 8px 10px; color: #9e5730; font-weight: 700; }
+.nile-fee-evidence details { margin: 10px 0; }
+.nile-fee-evidence summary { cursor: pointer; color: #16816d; font-weight: 700; }
+.nile-fee-evidence code { overflow-wrap: anywhere; }
+.nile-fee-evidence ul { margin: 7px 0 0; padding-left: 19px; }
+.nile-fee-source { overflow-wrap: anywhere; color: #718a83; }
+.nile-fee-source a { color: #16816d; font-weight: 700; }
+.nile-fee-evidence small { display: block; color: #718a83; line-height: 1.6; }
+@media (max-width: 650px) {
+  .plan-dated-head { display: block; }
+  .plan-dated-head strong { display: inline-block; margin-bottom: 12px; }
+  .plan-dated-allocation { padding: 16px; }
+  .plan-dated-actions { align-items: stretch; flex-direction: column; }
+  .plan-dated-actions .plan-select { width: 100%; }
+}

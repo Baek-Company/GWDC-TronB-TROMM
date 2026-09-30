@@ -1,0 +1,20 @@
+{
+  "recordType": "template",
+  "project": null,
+  "product": null,
+  "network": null,
+  "assetSymbol": null,
+  "assetContract": null,
+  "productContract": null,
+  "decimals": null,
+  "baseApy": null,
+  "incentive": { "rate": null, "rateType": null, "rewardAsset": null, "eligibility": null, "expiresAt": null },
+  "operatingCosts": null,
+  "minimumAmount": null,
+  "withdrawalConditions": null,
+  "risks": [],
+  "status": "unverified",
+  "sourceUrls": [],
+  "fetchedAt": null,
+  "sourceUpdatedAt": null
+}

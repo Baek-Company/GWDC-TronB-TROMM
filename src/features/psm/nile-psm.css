@@ -1,0 +1,23 @@
+.nile-psm-panel { padding-bottom: 30px; }
+.nile-psm-surface { padding: 22px; }
+.nile-psm-surface > p,
+.nile-psm-preview p,
+.nile-psm-intent p { color: #657987; font-size: 12px; line-height: 1.7; overflow-wrap: anywhere; }
+.nile-psm-balances { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 16px 0; }
+.nile-psm-balances > div { display: grid; gap: 5px; padding: 14px; border: 1px solid #e0e9e3; border-radius: 9px; background: #f8fbf8; }
+.nile-psm-balances span { font-size: 10px; color: #728c7b; }
+.nile-psm-balances strong { font-size: 15px; color: #213c32; overflow-wrap: anywhere; }
+.nile-psm-source { font-size: 10px !important; }
+.nile-psm-actions,.nile-psm-steps { display: flex; flex-wrap: wrap; gap: 8px; margin: 15px 0; }
+.nile-psm-directions { display: flex; flex-wrap: wrap; gap: 13px; margin: 18px 0; padding: 13px; border: 1px solid #e0e9e3; border-radius: 9px; }
+.nile-psm-directions legend { color: #385848; font-size: 11px; font-weight: 700; }
+.nile-psm-directions label,.nile-psm-amount { color: #3b5949; font-size: 12px; font-weight: 700; }
+.nile-psm-directions input { margin-right: 5px; }
+.nile-psm-amount { display: block; margin: 12px 0 7px; }
+.nile-psm-amount input { width: 130px; margin: 0 5px; padding: 9px 10px; border: 1px solid #dce5dc; border-radius: 8px; }
+.nile-psm-surface > small { color: #788f81; font-size: 11px; line-height: 1.6; }
+.nile-psm-preview,.nile-psm-intent { margin-top: 17px; padding: 16px; border: 1px solid #dce9de; border-radius: 10px; background: #fbfdfb; }
+.nile-psm-preview h3 { margin: 0 0 8px; font-size: 15px; }
+.nile-psm-preview .usdd-risk { display: flex; align-items: flex-start; gap: 7px; margin: 14px 0; color: #5a674f; font-size: 11px; }
+.nile-psm-intent .refresh-button { margin-top: 6px; }
+@media (max-width: 700px) { .nile-psm-balances { grid-template-columns: 1fr; } }

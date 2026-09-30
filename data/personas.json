@@ -1,0 +1,9 @@
+{
+  "mode": "synthetic",
+  "note": "모든 사용자와 보유 금액은 시연용 가상 데이터입니다.",
+  "profiles": [
+    { "id": "liquidity-first", "asset": "USDT", "amount": "1000", "horizonDays": 30, "liquidReserve": "200", "riskPreference": "conservative" },
+    { "id": "balanced", "asset": "USDD", "amount": "3000", "horizonDays": 90, "liquidReserve": "1000", "riskPreference": "balanced" },
+    { "id": "missing-horizon", "asset": "TRX", "amount": "5000", "horizonDays": null, "liquidReserve": "500", "riskPreference": "balanced", "expectedFollowUp": "운용 기간을 알려주세요." }
+  ]
+}
