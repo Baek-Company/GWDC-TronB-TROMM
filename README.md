@@ -11,7 +11,7 @@ The diagram shows how TROMM turns user requirements into evaluated plans, with s
 
 ![TROMM pipeline: requirements, extraction, research, planning, separate Mainnet and Nile routes, transaction approval, verification, and monitoring](docs/images/tromm-pipeline.png)
 
-[View full-size PNG](docs/images/tromm-pipeline.png) · [View SVG](docs/images/tromm-pipeline.svg)
+[View full-size PNG](docs/images/tromm-pipeline.png) · [View the detailed pipeline](docs/images/pipeline_mermaid.png)
 
 ## 🗂️ Table of Contents
 
