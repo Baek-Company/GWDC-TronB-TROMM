@@ -1,4 +1,5 @@
 import { TronWeb } from 'tronweb';
+import type { Translate } from '../../lib/i18n';
 import { actionPreviewSchema, executionRecordSchema, type ExecutionRecord, type Observation, type UserNeeds } from '../../../shared/schemas';
 import type { NileDepositPreview, NileTransactionResult } from '../../../server/transactions';
 import { assertWalletEpoch, getWalletEpoch, requireNileWallet } from '../../wallet';
@@ -205,11 +206,13 @@ export async function executeNileDeposit(input: {
   assertBeforeSign?: () => void;
   expectedWalletEpoch?: number;
   confirmAction?: (preview: NileDepositPreview) => boolean | Promise<boolean>;
+  t?: Translate;
   approval: NileApprovalGateway;
   confirmedNeeds?: UserNeeds;
   store?: Pick<Storage, 'getItem' | 'setItem'>;
 }): Promise<ExecutionRecord> {
   const { preview, refreshPreview, onRecord, store } = input;
+  const t: Translate = input.t ?? (korean => korean);
   requireCurrentNilePlanId(preview.planId);
   verifyPreview(preview, Date.now());
   if (input.confirmPreviewId !== preview.id) throw new Error('사용자님이 확인한 미리보기 ID와 거래 대상이 다릅니다.');
@@ -240,9 +243,12 @@ export async function executeNileDeposit(input: {
     requireNileWallet(preview.walletAddress);
 
     const confirm = input.confirmAction ?? ((value: NileDepositPreview) => window.confirm(
-      `Nile에서 ${formatSun(value.amountBaseUnits)} TRX를 jTRX에 예치하시겠습니까?\n` +
-      `계약: ${value.contractAddress}\n예상 수수료: ${formatSun(value.estimatedFeeBaseUnits!)} TRX\n` +
-      `최대 수수료: ${formatSun(value.maxFeeBaseUnits!)} TRX\n출금 시 시장 유동성이 필요합니다.`,
+      t(`Nile에서 ${formatSun(value.amountBaseUnits)} TRX를 jTRX에 예치하시겠습니까?\n` +
+        `계약: ${value.contractAddress}\n예상 수수료: ${formatSun(value.estimatedFeeBaseUnits!)} TRX\n` +
+        `최대 수수료: ${formatSun(value.maxFeeBaseUnits!)} TRX\n출금 시 시장 유동성이 필요합니다.`,
+      `Deposit ${formatSun(value.amountBaseUnits)} TRX into jTRX on Nile?\n` +
+        `Contract: ${value.contractAddress}\nEstimated fee: ${formatSun(value.estimatedFeeBaseUnits!)} TRX\n` +
+        `Maximum fee: ${formatSun(value.maxFeeBaseUnits!)} TRX\nWithdrawal requires market liquidity.`),
     ));
     if (!await confirm(refreshed)) {
       record.status = 'rejected';

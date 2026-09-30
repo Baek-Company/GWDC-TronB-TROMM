@@ -13,6 +13,7 @@ import { assertNoOtherNilePendingExecution, readTxEvidence, saveTxEvidence,
   withNileExecutionLock } from '../src/features/execution/safety';
 import { matchesNileDepositPreview, matchesNileWithdrawalPreview } from '../src/features/execution/preview-context';
 import { nileWithdrawalResultSchema } from '../src/features/execution/NileWithdrawalPanel';
+import { createTranslator } from '../src/lib/i18n';
 
 const walletAddress = 'TXLAQ63Xg1NAzckPwKHvzw7CSEmLMEqcdj';
 const contractAddress = NILE_JTRX_CANDIDATE;
@@ -745,6 +746,26 @@ describe('TronLink one-shot Nile execution', () => {
     expect(broadcast).not.toHaveBeenCalled();
   });
 
+  it('localizes the deposit confirmation while preserving its exact terms and rejection gate', async () => {
+    const { sign, broadcast } = installWallet();
+    const confirm = vi.fn((_message?: string) => false);
+    window.confirm = confirm;
+    const value = preview();
+    const approval = mockApprovalGateway();
+    const result = await executeNileDeposit({ preview: value, confirmPreviewId: value.id,
+      refreshPreview: async () => value, onRecord: () => {}, store: memoryStore(),
+      approval, t: createTranslator('en') });
+    expect(confirm).toHaveBeenCalledWith(`Deposit 80 TRX into jTRX on Nile?\n` +
+      `Contract: ${contractAddress}\nEstimated fee: 1 TRX\nMaximum fee: 2 TRX\nWithdrawal requires market liquidity.`);
+    expect(result.status).toBe('rejected');
+    expect(approval.reserve).not.toHaveBeenCalled();
+    expect(sign).not.toHaveBeenCalled();
+    expect(broadcast).not.toHaveBeenCalled();
+    await executeNileDeposit({ preview: value, confirmPreviewId: value.id,
+      refreshPreview: async () => value, onRecord: () => {}, store: memoryStore() });
+    expect(confirm.mock.calls[1][0]).toContain('Nile에서 80 TRX를 jTRX에 예치하시겠습니까?');
+  });
+
   it('cancels before signing on changed conditions or a direct user rejection', async () => {
     const { sign } = installWallet();
     const value = preview();
@@ -1126,6 +1147,28 @@ describe('Nile jTRX withdrawal after a confirmed deposit', () => {
       onRecord: () => {}, store: memoryStore(), approval: mockApprovalGateway() }))
       .rejects.toThrow('Bandwidth 예산 근거');
     expect(sign).not.toHaveBeenCalled();
+  });
+
+  it('localizes the redemption confirmation without bypassing rejection', async () => {
+    const value = await withdrawalPreview();
+    const { sign, broadcast } = installWithdrawalWallet();
+    const confirm = vi.fn((_message?: string) => false);
+    window.confirm = confirm;
+    const approval = mockApprovalGateway();
+    const result = await executeNileWithdrawal({ preview: value,
+      depositRecord: confirmedDeposit(value.planId), confirmPreviewId: value.id,
+      refreshPreview: async () => value, onRecord: () => {}, store: memoryStore(),
+      approval, t: createTranslator('en') });
+    const message = confirm.mock.calls[0][0];
+    expect(message).toContain('Redeem 0.5 Nile jTRX?');
+    expect(message).toContain(`Contract: ${contractAddress}`);
+    expect(message).toContain('Estimated proceeds: 100 TRX');
+    expect(message).toContain('Exchange rates and market liquidity may change.');
+    expect(message).not.toMatch(/[가-힣]/);
+    expect(result.status).toBe('rejected');
+    expect(approval.reserve).not.toHaveBeenCalled();
+    expect(sign).not.toHaveBeenCalled();
+    expect(broadcast).not.toHaveBeenCalled();
   });
 
   it('stops on condition changes or rejection without asking TronLink to sign', async () => {

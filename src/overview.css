@@ -286,6 +286,35 @@
 .dayplan-topbar-right a:hover { background: #e6f3ef; }
 .dayplan-topbar-right a.active { background: #e6f3ef; color: #16816d; }
 
+.language-selector {
+  max-width: 105px;
+  min-height: 36px;
+  padding: 7px 9px;
+  border: 1px solid #cbded6;
+  border-radius: 9px;
+  background: #fffefd;
+  color: #075247;
+  font: inherit;
+  font-size: 12px;
+  cursor: pointer;
+}
+.language-selector:focus-visible { outline: 2px solid #188c78; outline-offset: 3px; }
+html[lang="en"] .dayplan-topnav a { min-width: 0; font-size: 13px; }
+html[lang="en"] .dayplan-brand { flex-basis: 230px; width: 230px; }
+html[lang="en"] .dayplan-topbar { gap: 12px; }
+html[lang="en"] .dayplan-topbar-right { gap: 8px; }
+html[lang="en"] .dayplan-topbar-right a { margin-left: 0; }
+@media (max-width: 1450px) {
+  .dayplan-topbar { flex-wrap: wrap; gap: 8px; padding-top: 12px; padding-bottom: 8px; }
+  .dayplan-topnav { order: 3; width: 100%; justify-content: center; flex-wrap: wrap; }
+  .dayplan-brand, html[lang="en"] .dayplan-brand { flex: 1 1 auto; }
+}
+@media (max-width: 600px) {
+  .dayplan-topbar-right .dayplan-demo-chip { display: none; }
+  .language-selector { max-width: 94px; }
+  html[lang="en"] .dayplan-topnav a { font-size: 12px; }
+}
+
 .dayplan-shell .page-content {
   position: relative;
   isolation: isolate;
@@ -714,6 +743,7 @@
   .nile-expense-row { display: grid; grid-template-columns: 1fr; }
   .nile-expense-row input, .nile-expense-row input[type="date"] { width: 100%; }
   .nile-expense-row .text-button { justify-self: start; }
+  .dayplan-brand, html[lang="en"] .dayplan-brand { flex: 1 1 140px; width: auto; min-width: 0; }
 }
 @media (max-width: 650px) {
   .nile-withdrawal, .replay-panel { padding: 18px; }

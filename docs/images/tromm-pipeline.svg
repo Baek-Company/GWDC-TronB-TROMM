@@ -1,0 +1,112 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1810" viewBox="0 0 2400 1810">
+<rect width="100%" height="100%" fill="#f5f7fb"/>
+<text x="80" y="50" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="29" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">TROMM</text>
+<text x="80" y="101" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="57" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">TRON Asset Planning Pipeline</text>
+<text x="82" y="184" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="28" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">GWDC 2026 Challenge B  |  Requirements → Planning → Approved Transactions → Verification</text>
+<rect x="1920" y="60" width="400" height="63" rx="30" fill="#e6ecfc" stroke="#e6ecfc" stroke-width="2"/>
+<text x="1945" y="77" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">Implementation · 2026.09.30</text>
+<rect x="80" y="270" width="530" height="255" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="104" y="291" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">01  INPUT</text>
+<text x="104" y="328" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">User Requirements</text>
+<text x="104" y="381" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Holdings · horizon · dated expenses</text>
+<text x="104" y="420" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Reserves · risk preferences · questions</text>
+<text x="104" y="459" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">React / Vite UI · chat and forms</text>
+<rect x="650" y="270" width="530" height="255" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="674" y="291" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">02  UNDERSTAND</text>
+<text x="674" y="328" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Extract &amp; Confirm</text>
+<text x="674" y="381" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">NIM gpt-oss-20b / template fallback</text>
+<text x="674" y="420" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Explicit facts → validated JSON</text>
+<text x="674" y="459" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Ask for missing facts · reconfirm edits</text>
+<rect x="1220" y="270" width="530" height="255" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="1244" y="291" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">03  EVIDENCE</text>
+<text x="1244" y="328" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Research &amp; Read</text>
+<text x="1244" y="381" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">JustLend REST · TRON RPC</text>
+<text x="1244" y="420" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Rates · liquidity · balances · fee evidence</text>
+<text x="1244" y="459" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Track source, chain and query time</text>
+<rect x="1790" y="270" width="530" height="255" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="1814" y="291" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">04  PLAN</text>
+<text x="1814" y="328" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Calculate &amp; Assess</text>
+<text x="1814" y="381" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Protect expenses and reserves first</text>
+<text x="1814" y="420" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Dated allocation · cost and risk checks</text>
+<text x="1814" y="459" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Compare · select · save a baseline</text>
+<polyline points="610,395 644,395" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="644,395 630.4932934647098,401.52448301166845 630.4932934647098,388.47551698833155" fill="#315ed5"/>
+<polyline points="1180,395 1214,395" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="1214,395 1200.49329346471,401.52448301166845 1200.49329346471,388.47551698833155" fill="#315ed5"/>
+<polyline points="1750,395 1784,395" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="1784,395 1770.49329346471,401.52448301166845 1770.49329346471,388.47551698833155" fill="#315ed5"/>
+<polyline points="2055,525 2055,565 1200,565 1200,578" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="1200,578 1193.4755169883315,564.4932934647098 1206.5244830116685,564.4932934647098" fill="#315ed5"/>
+<text x="800" y="588" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="24" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Route by chain · keep assets and evidence separate</text>
+<polyline points="1200,630 635,630 635,664" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="635,664 628.4755169883315,650.4932934647098 641.5244830116685,650.4932934647098" fill="#315ed5"/>
+<polyline points="1200,630 1785,630 1785,664" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="1785,664 1778.4755169883315,650.4932934647098 1791.5244830116685,650.4932934647098" fill="#087f79"/>
+<rect x="80" y="680" width="1090" height="295" rx="20" fill="#edf2ff" stroke="#cbd8fb" stroke-width="2"/>
+<text x="110" y="708" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="24" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">A  MAINNET</text>
+<text x="110" y="752" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="36" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Read-only Data &amp; Scenario Planning</text>
+<text x="110" y="813" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="28" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">USDT scenarios assume a synthetic 5% annual APY</text>
+<text x="110" y="859" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="27" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Live market reads are separate from hypothetical yield</text>
+<text x="110" y="911" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="26" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">Mainnet execution unsupported · execution eligibility: false</text>
+<rect x="1230" y="680" width="1090" height="295" rx="20" fill="#eaf7f4" stroke="#bfe2da" stroke-width="2"/>
+<text x="1260" y="708" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="24" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">B  NILE TESTNET</text>
+<text x="1260" y="752" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="36" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">User-approved Technical Testing</text>
+<text x="1260" y="813" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="28" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">TRX ↔ jTRX: live test deposits and redemptions verified</text>
+<text x="1260" y="859" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="27" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">PSM USDD ↔ USDT: separate experiment; live trades unverified</text>
+<text x="1260" y="911" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="26" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">Each transaction needs preview confirmation and wallet signing</text>
+<polyline points="1785,975 1785,1015 296,1015 296,1055" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="296,1055 289.47551698833155,1041.49329346471 302.52448301166845,1041.49329346471" fill="#087f79"/>
+<rect x="80" y="1070" width="420" height="220" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="104" y="1091" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">05  PREVIEW</text>
+<text x="104" y="1128" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Preview</text>
+<text x="104" y="1181" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Contract · balances · fees</text>
+<text x="104" y="1220" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Check expense protection</text>
+<polyline points="500,1178 529,1178" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="529,1178 515.4932934647098,1184.5244830116685 515.4932934647098,1171.4755169883315" fill="#087f79"/>
+<rect x="535" y="1070" width="420" height="220" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="559" y="1091" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">06  AUTHORIZE</text>
+<text x="559" y="1128" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Authorize &amp; Reserve</text>
+<text x="559" y="1181" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">TronLink ownership message</text>
+<text x="559" y="1220" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Revalidate, then reserve</text>
+<polyline points="955,1178 984,1178" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="984,1178 970.4932934647098,1184.5244830116685 970.4932934647098,1171.4755169883315" fill="#087f79"/>
+<rect x="990" y="1070" width="420" height="220" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="1014" y="1091" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">07  SIGN</text>
+<text x="1014" y="1128" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Sign Transaction</text>
+<text x="1014" y="1181" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Individual TronLink signature</text>
+<text x="1014" y="1220" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Check signed payload / txID</text>
+<polyline points="1410,1178 1439,1178" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="1439,1178 1425.49329346471,1184.5244830116685 1425.49329346471,1171.4755169883315" fill="#087f79"/>
+<rect x="1445" y="1070" width="420" height="220" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="1469" y="1091" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">08  BROADCAST</text>
+<text x="1469" y="1128" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Accept &amp; Broadcast</text>
+<text x="1469" y="1181" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Accept into encrypted SQLite</text>
+<text x="1469" y="1220" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Then broadcast from browser</text>
+<polyline points="1865,1178 1894,1178" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="1894,1178 1880.49329346471,1184.5244830116685 1880.49329346471,1171.4755169883315" fill="#087f79"/>
+<rect x="1900" y="1070" width="420" height="220" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="1924" y="1091" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="22" font-weight="700" fill="#087f79" dominant-baseline="text-before-edge">09  VERIFY</text>
+<text x="1924" y="1128" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="30" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Verify On-chain</text>
+<text x="1924" y="1181" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Read solidified receipt</text>
+<text x="1924" y="1220" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Match position / received funds</text>
+<polyline points="2110,1290 2110,1340 1790,1340 1790,1370" fill="none" stroke="#087f79" stroke-width="4"/>
+<polygon points="1790,1370 1783.4755169883315,1356.49329346471 1796.5244830116685,1356.49329346471" fill="#087f79"/>
+<polyline points="98,975 55,975 55,1470 80,1470" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="80,1470 66.49329346470985,1476.5244830116685 66.49329346470985,1463.4755169883315" fill="#315ed5"/>
+<rect x="80" y="1385" width="2240" height="250" rx="20" fill="white" stroke="#dce3ed" stroke-width="2"/>
+<text x="112" y="1415" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">10  MONITOR &amp; REVIEW</text>
+<text x="112" y="1460" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="35" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Monitor Plans &amp; Review Records</text>
+<text x="112" y="1522" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="26" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Recheck on open / every 5 min / tab focus</text>
+<text x="112" y="1565" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="26" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Maintain · pause new deposits · review</text>
+<text x="960" y="1460" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="31" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Store &amp; Recover</text>
+<text x="960" y="1522" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="26" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">localStorage: inputs, plans, records</text>
+<text x="960" y="1565" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="26" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">SQLite: approvals, pending txIDs</text>
+<text x="1690" y="1460" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="31" font-weight="700" fill="#14243a" dominant-baseline="text-before-edge">Export &amp; Replay</text>
+<text x="1690" y="1522" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="25" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Session JSON · snapshot / synthetic</text>
+<text x="1690" y="1565" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Replay / adjustment drafts do not trade</text>
+<polyline points="2320,1480 2360,1480 2360,243 2060,243 2060,264" fill="none" stroke="#315ed5" stroke-width="4"/>
+<polygon points="2060,264 2053.4755169883315,250.49329346470984 2066.5244830116685,250.49329346470984" fill="#315ed5"/>
+<text x="1300" y="1690" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="24" font-weight="700" fill="#315ed5" dominant-baseline="text-before-edge">Reassess → confirm updated plan → approve each new transaction</text>
+<text x="80" y="1700" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">Monitoring while app is open · no unattended trading</text>
+<text x="80" y="1750" font-family="Malgun Gothic, Noto Sans KR, sans-serif" font-size="23" font-weight="400" fill="#53657a" dominant-baseline="text-before-edge">STACK   React + TypeScript  /  Node API  /  NIM  /  REST·RPC  /  TronLink  /  Encrypted SQLite</text>
+</svg>

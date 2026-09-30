@@ -1,4 +1,5 @@
 import { TronWeb } from 'tronweb';
+import type { Translate } from '../../lib/i18n';
 import { z } from 'zod';
 import { actionPreviewSchema, executionRecordSchema, type ExecutionRecord, type Observation } from '../../../shared/schemas';
 import { sameSafeNileWithdrawal } from '../../../shared/nile-withdrawal-revalidation';
@@ -252,10 +253,12 @@ export async function executeNileWithdrawal(input: {
   onRecord: (record: ExecutionRecord) => void | Promise<void>;
   expectedWalletEpoch?: number;
   confirmAction?: (preview: NileWithdrawalPreview) => boolean | Promise<boolean>;
+  t?: Translate;
   approval: NileApprovalGateway;
   store?: Pick<Storage, 'getItem' | 'setItem'>;
 }): Promise<ExecutionRecord> {
   const { preview, refreshPreview, onRecord, store } = input;
+  const t: Translate = input.t ?? (korean => korean);
   requireCurrentNilePlanId(preview.planId);
   verifyPreview(preview, Date.now());
   const deposit = executionRecordSchema.parse(input.depositRecord);
@@ -294,10 +297,14 @@ export async function executeNileWithdrawal(input: {
     if (!sameSafeNileWithdrawal(preview, refreshed)) throw new WithdrawalPreviewChangedError(refreshed);
     requireNileWallet(preview.walletAddress);
     const confirm = input.confirmAction ?? ((value: NileWithdrawalPreview) => window.confirm(
-      `Nile jTRX ${formatUnits(value.amountBaseUnits, 8)}개를 환매하시겠습니까?\n` +
-      `예상 수령: ${formatUnits(value.expectedUnderlyingSun, 6)} TRX\n계약: ${value.contractAddress}\n` +
-      `예상 수수료: ${formatUnits(value.estimatedFeeBaseUnits!, 6)} TRX\n` +
-      `최대 수수료: ${formatUnits(value.maxFeeBaseUnits!, 6)} TRX\n환율·시장 유동성이 바뀔 수 있습니다.`,
+      t(`Nile jTRX ${formatUnits(value.amountBaseUnits, 8)}개를 환매하시겠습니까?\n` +
+        `예상 수령: ${formatUnits(value.expectedUnderlyingSun, 6)} TRX\n계약: ${value.contractAddress}\n` +
+        `예상 수수료: ${formatUnits(value.estimatedFeeBaseUnits!, 6)} TRX\n` +
+        `최대 수수료: ${formatUnits(value.maxFeeBaseUnits!, 6)} TRX\n환율·시장 유동성이 바뀔 수 있습니다.`,
+      `Redeem ${formatUnits(value.amountBaseUnits, 8)} Nile jTRX?\n` +
+        `Estimated proceeds: ${formatUnits(value.expectedUnderlyingSun, 6)} TRX\nContract: ${value.contractAddress}\n` +
+        `Estimated fee: ${formatUnits(value.estimatedFeeBaseUnits!, 6)} TRX\n` +
+        `Maximum fee: ${formatUnits(value.maxFeeBaseUnits!, 6)} TRX\nExchange rates and market liquidity may change.`),
     ));
     if (!await confirm(preview)) {
       record.status = 'rejected';

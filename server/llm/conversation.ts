@@ -19,6 +19,7 @@ export const conversationFieldsSchema = z.object({
 export const conversationRequestSchema = z.object({
   message: z.string().trim().min(1).max(2000),
   current: conversationFieldsSchema.partial().optional(),
+  language: z.enum(['ko', 'en']).default('ko'),
 }).strict();
 
 export type ConversationFields = z.infer<typeof conversationFieldsSchema>;
@@ -116,7 +117,21 @@ function nextMissingField(fields: ConversationFields) {
   return null;
 }
 
-function nextQuestion(fields: ConversationFields): string | null {
+function nextQuestion(fields: ConversationFields, language: 'ko' | 'en'): string | null {
+  if (language === 'en') {
+    const prompts = {
+      holdings: 'What asset and amount do you hold? Example: 1,000 USDT',
+      horizon: 'How many days do you plan to invest?',
+      expense: 'When and how much will you spend? Please use the form below for English input.',
+      expenseDay: 'How many days until the expense?',
+      expenseAmount: 'How much will you spend on that day? Example: 200 USDT',
+      risk: 'Is your risk preference conservative, balanced or growth?',
+      reserve: 'What emergency reserve will you keep in addition to expenses? Enter 0 for none.',
+      usdd: 'May USDD conversion and depegging risk be included in the comparison?',
+    };
+    const field = nextMissingField(fields);
+    return field ? prompts[field] : null;
+  }
   switch (nextMissingField(fields)) {
     case 'holdings': return '보유 자산과 금액을 알려주세요. 예: 1,000 USDT';
     case 'horizon': return '자산을 며칠 동안 운용할 계획이신가요?';
@@ -238,7 +253,7 @@ export async function analyzeConversation(raw: unknown) {
     Object.keys(emptyFields).map(key => [key, patch[key as keyof ConversationFields] ?? current[key as keyof ConversationFields]]),
   ));
   if (mentionsUsdd && usddDecision === null) merged.acceptsUsddRisk = null;
-  const question = nextQuestion(merged);
+  const question = nextQuestion(merged, request.language);
   return {
     provider, model: provider === 'nim' ? nimModel : null, reason,
     fields: merged, updates: patch, nextQuestion: question,

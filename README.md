@@ -5,8 +5,17 @@
 > ⚠️ **Mainnet is used for lookups and plan comparisons, while Nile is a separate technical testing environment.**
 > Nile TRX/jTRX deposit and redemption transactions have been empirically verified. Nile PSM live transactions and executable Mainnet plans have not been verified. Asset, interest-rate, and transaction evidence from the two environments must not be combined.
 
+## Application Pipeline
+
+The diagram shows how TROMM turns user requirements into evaluated plans, with separate routes for Mainnet scenario planning and user-approved Nile testnet transactions.
+
+![TROMM pipeline: requirements, extraction, research, planning, separate Mainnet and Nile routes, transaction approval, verification, and monitoring](docs/images/tromm-pipeline.png)
+
+[View full-size PNG](docs/images/tromm-pipeline.png) · [View SVG](docs/images/tromm-pipeline.svg)
+
 ## 🗂️ Table of Contents
 
+- [Application Pipeline](#application-pipeline)
 - [Quick Start](#quick-start)
 - [Screens and Key Features](#screens-and-key-features)
 - [Data and Verification Scope](#data-and-verification-scope)
