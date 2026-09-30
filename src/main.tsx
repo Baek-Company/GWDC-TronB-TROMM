@@ -155,8 +155,8 @@ function App() {
     return () => window.removeEventListener('popstate', onPopState);
   }, []);
   useEffect(() => {
-    document.title = `${mainCopy(routeTitles[route], language)} · ${t("GWDC TRON 자산 계획", "GWDC TRON Asset Planning")}`;
-  }, [route, language]);
+    document.title = 'TROMM';
+  }, []);
   useEffect(() => {
     if (route !== '/' && route !== '/nile' && route !== '/connections' && route !== '/markets') return;
     const updateNow = () => setNowMs(Date.now());
@@ -388,7 +388,7 @@ function App() {
   return <div className={`app-shell${route === '/usdt-demo' ? ' dayplan-shell' : ''}`}>
     <main className="main-content">
       <header className="dayplan-topbar">
-        <a className="dayplan-brand" href="/" onClick={event => navigate(event, '/')} aria-label={t("GWDC 홈", "GWDC home")}><strong>G<span>W</span>DC</strong><small>{t("TRON과 함께, 더 나은 내일의 자산 계획", "A better financial future with TRON")}</small></a>
+        <a className="dayplan-brand" href="/" onClick={event => navigate(event, '/')} aria-label={t("TROMM 홈", "TROMM home")}><strong>T<span>R</span>OMM</strong><small>{t("TRON과 함께, 더 나은 내일의 자산 계획", "A better financial future with TRON")}</small></a>
         <nav className="dayplan-topnav" aria-label={copy("주요 메뉴")}>
           <a className={nileHome ? 'active' : ''} aria-current={nileHome ? 'page' : undefined} href="/" onClick={event => navigate(event, '/')}>{copy("Nile 시연")}</a>
           <a className={route === '/usdt-demo' ? 'active' : ''} aria-current={route === '/usdt-demo' ? 'page' : undefined} href="/usdt-demo" onClick={event => navigate(event, '/usdt-demo')}>{copy("USDT 예상")}</a>
