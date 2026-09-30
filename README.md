@@ -1,24 +1,24 @@
-# 🌊 GWDC 2026 · TRON 자산 계획
+# 🌊 GWDC 2026 · TRON Asset Planning
 
-**TROMM**은 GWDC 2026 Challenge B를 위한 사전 개발·시연 앱입니다. 사용자 요구를 정리하고, 가상 자산 계획 계산과 시장 조회, Nile 테스트넷의 사용자 승인형 거래를 제공합니다.
+**TROMM** is a pre-development and demonstration app for GWDC 2026 Challenge B. It organizes user requirements and provides virtual asset planning calculations, market lookups, and user-approved transactions on the Nile testnet.
 
-> ⚠️ **Mainnet은 조회·계획 비교, Nile은 별도 기술 시험 환경입니다.**
-> Nile TRX·jTRX 예치·환매는 실증 기록이 있으며, Nile PSM 실거래와 Mainnet 실행 가능 계획은 검증되지 않았습니다. 두 환경의 자산·금리·거래 증거를 합치지 않습니다.
+> ⚠️ **Mainnet is used for lookups and plan comparisons, while Nile is a separate technical testing environment.**
+> Nile TRX/jTRX deposit and redemption transactions have been empirically verified. Nile PSM live transactions and executable Mainnet plans have not been verified. Asset, interest-rate, and transaction evidence from the two environments must not be combined.
 
-## 🗂️ 목차
+## 🗂️ Table of Contents
 
-- [빠른 시작](#빠른-시작)
-- [화면과 주요 기능](#화면과-주요-기능)
-- [데이터와 검증 범위](#데이터와-검증-범위)
-- [환경 설정](#환경-설정)
-- [Nile 거래와 복구](#nile-거래와-복구)
-- [저장과 개인정보](#저장과-개인정보)
-- [개발·검증 명령](#개발검증-명령)
-- [관련 문서](#관련-문서)
+- [Quick Start](#quick-start)
+- [Screens and Key Features](#screens-and-key-features)
+- [Data and Verification Scope](#data-and-verification-scope)
+- [Environment Configuration](#environment-configuration)
+- [Nile Transactions and Recovery](#nile-transactions-and-recovery)
+- [Storage and Privacy](#storage-and-privacy)
+- [Development and Verification Commands](#development-and-verification-commands)
+- [Related Documents](#related-documents)
 
-## 🚀 빠른 시작
+## 🚀 Quick Start
 
-**Node.js 24와 npm**이 필요합니다. 아래 명령은 프로젝트 루트에서 실행합니다.
+**Node.js 24 and npm** are required. Run the following commands from the project root.
 
 ### 🍎 macOS
 
@@ -27,7 +27,7 @@
 ./scripts/run run dev
 ```
 
-`scripts/run`은 설치된 Homebrew Node 24를 우선 사용합니다.
+`scripts/run` prioritizes an installed Homebrew Node.js 24 installation.
 
 ### 🪟 Windows · PowerShell
 
@@ -36,158 +36,158 @@ npm ci
 npm run dev
 ```
 
-| 접속 대상 | 기본 주소 |
+| Target | Default Address |
 | --- | --- |
-| 🌐 앱 · Nile 시연 | http://127.0.0.1:5173 |
-| 💚 API 상태 | http://127.0.0.1:8787/api/health |
+| 🌐 App · Nile Demo | http://127.0.0.1:5173 |
+| 💚 API Health | http://127.0.0.1:8787/api/health |
 
-API 키나 Nile 거래 설정이 필요한 경우 [.env.example](.env.example)을 참고해 `.env.local`을 작성한 뒤 개발 서버를 다시 시작합니다. 자세한 항목은 [환경 설정](#환경-설정)을 확인해 주세요.
+If API keys or Nile transaction settings are required, refer to [.env.example](.env.example), create `.env.local`, and restart the development server. See [Environment Configuration](#environment-configuration) for details.
 
-## 🧭 화면과 주요 기능
+## 🧭 Screens and Key Features
 
-| 화면 | 주요 기능 |
+| Screen | Key Features |
 | --- | --- |
-| 🏠 `/` · `/nile` | Nile 상태·지갑 네트워크·거래 근거 확인, 가상 TRX와 날짜별 지출 입력, jTRX 계획 및 별도 PSM 시험 |
-| 🗓️ `/usdt-demo` | 한국시간 기준 7일 달력, 가상 보유액에서 예정 지출·예비액을 뺀 운용액, 가정 금리의 비용 전 이자 |
-| 🧮 `/plans` | 실잔액·시장 조회와 분리된 USDT 가정 계산, 비용·순이익·실행 적격성 미확인 표시 |
-| 📈 `/markets` | 화면 진입·수동 갱신 시 JustLend Mainnet REST 조회 |
+| 🏠 `/` · `/nile` | Check Nile status, wallet network, and transaction evidence; enter virtual TRX holdings and dated expenses; create jTRX plans and run a separate PSM test |
+| 🗓️ `/usdt-demo` | 7-day calendar based on Korea Standard Time; calculates deployable funds after subtracting planned expenses and reserves from virtual holdings; displays pre-cost interest based on an assumed rate |
+| 🧮 `/plans` | USDT scenario calculations separated from real balances and market lookups; displays unverified costs, net profit, and execution eligibility |
+| 📈 `/markets` | Queries JustLend Mainnet REST when the screen is opened or manually refreshed |
 
-PSM, Stake 2.0, SUN.io, MCP의 상태는 별도 출처·연결 화면에서 확인합니다.
+The status of PSM, Stake 2.0, SUN.io, and MCP is checked through separate sources and connection screens.
 
-### ✨ 요구 분석과 계획 관리
+### ✨ Requirement Analysis and Plan Management
 
-- 🧾 **요구 분석:** 명시 정보를 JSON으로 추출하고 누락 질문과 요약을 제공합니다. 수정하면 다시 확인하며, NIM `openai/gpt-oss-20b` 문장 추출과 템플릿 대체 경로를 사용합니다.
-- 🧮 **계획 평가:** 시장 질문 조사, 날짜별 배분 평가, 읽기 전용 기준선 보관을 지원합니다.
-- 👀 **목표 감시:** 화면 진입·5분 간격·탭 복귀 시 보관한 계획을 재조회해 유지, 신규 예치 보류, 계획 재검토를 표시합니다.
-- 🔍 **기록 검토:** 예치·환매·포지션 연결을 검증하며, 근거가 부족하면 손익 판단을 보류합니다. 조정 초안은 거래를 실행하지 않습니다.
-- 📦 **내보내기·재생:** 세션 JSON 내보내기와 과거 자료(`snapshot`)·가상 자료(`synthetic`) 재생을 지원합니다. 재생은 거래를 실행하지 않습니다.
+- 🧾 **Requirement Analysis:** Extracts explicitly provided information into JSON and provides missing-information questions and a summary. When edited, the information is revalidated. It uses NIM `openai/gpt-oss-20b` for sentence extraction with a template-based fallback path.
+- 🧮 **Plan Evaluation:** Supports research for market-related questions, date-based allocation evaluation, and storage of read-only baselines.
+- 👀 **Goal Monitoring:** Rechecks stored plans when the screen is opened, every 5 minutes, and when the tab regains focus. It indicates whether to maintain the plan, pause new deposits, or review the plan.
+- 🔍 **Record Review:** Verifies links between deposits, redemptions, and positions. Profit/loss conclusions are withheld when evidence is insufficient. Adjustment drafts do not execute transactions.
+- 📦 **Export and Replay:** Supports session JSON export and replay using historical (`snapshot`) or virtual (`synthetic`) data. Replay does not execute transactions.
 
-## 📊 데이터와 검증 범위
+## 📊 Data and Verification Scope
 
-### 🌐 Mainnet · 조회와 가정 계산
+### 🌐 Mainnet · Lookups and Scenario Calculations
 
-현재 USDT 계획은 **실측 금리가 아닌 synthetic 연 5% APY**를 사용합니다. 예를 들어 800 USDT를 30일 운용할 때의 비용 전 예상 이자는 다음과 같습니다.
+The current USDT plan uses a **synthetic 5% annual APY**, not a measured live interest rate. For example, the estimated pre-cost interest for deploying 800 USDT for 30 days is:
 
 ```text
 800 × ((1 + 0.05)^(30/365) − 1) ≈ 3.21 USDT
 ```
 
-진입·환매 비용과 순이익은 미확인이며, Mainnet 실행 적격성은 `false`입니다. Mainnet USDT 잔액 확인은 가정 계산 시연의 선행 조건이 아닙니다. 최소 운용액 탐색도 고정 왕복 비용의 적용 범위를 뒷받침할 서버 자료가 없어 결과를 보류합니다.
+Entry and redemption costs and net profit have not been verified, and Mainnet execution eligibility is set to `false`. Checking a real Mainnet USDT balance is not a prerequisite for demonstrating the scenario calculation. Minimum deployable amount analysis is also withheld because no server-side evidence currently supports the applicability of a fixed round-trip cost.
 
-공식 데이터에는 출처 URL·체인·조회 시각을 붙이고, 조회 시각과 원천 갱신 시각을 구분합니다. 샘플·과거 스냅샷·실데이터를 구분하며, API 실패를 임의의 라이브 값으로 대체하지 않습니다. JustLend 기본 수익과 인센티브, APY·APR, 기간·비용·출금 제약도 구분합니다.
+Official data is stored together with its source URL, chain, and query timestamp, while query time and source-update time are tracked separately. Sample data, historical snapshots, and live data are clearly distinguished. API failures are not replaced with fabricated live values. JustLend base yield and incentives, APY and APR, holding periods, costs, and withdrawal restrictions are also treated separately.
 
-### 🧪 Nile · 사용자 승인형 기술 시험
+### 🧪 Nile · User-Approved Technical Testing
 
-| 항목 | 지원 범위 및 검증 기록 |
+| Item | Supported Scope and Verification Record |
 | --- | --- |
-| 🔄 TRX·jTRX | TRX 80/20·50/50 계획, 예치·환매 사전 검증, 별도 서명과 원 거래 추적 |
-| ✅ 실증 기록 | 시험 지갑의 1 TRX 예치·89.46435499 jTRX 환매를 두 원 txID, solidified 영수증, 동일 포지션, 실제 수령 TRX로 확인 |
-| 🧪 PSM USDD↔USDT | 양방향 계약·잔고·용량·수수료와 단계별 Energy/Bandwidth 검증 코드, 모의 테스트·읽기 검증 완료. 실거래 성공은 미검증 |
+| 🔄 TRX · jTRX | TRX 80/20 and 50/50 plans, deposit/redemption pre-validation, separate signing, and original transaction tracking |
+| ✅ Verified Record | Confirmed a 1 TRX deposit and redemption of 89.46435499 jTRX from a test wallet using the two original txIDs, solidified receipts, matching positions, and the actual received TRX amount |
+| 🧪 PSM USDD ↔ USDT | Bidirectional contract, balance, capacity, fee, and step-by-step Energy/Bandwidth validation code; mock tests and read-only verification completed. Successful live transactions have not been verified |
 
-PSM 검증 기록의 시험 지갑에 입금된 2,000 USDD는 PSM 입력 USDD와 **계약 주소가 달라**, 해당 확인 당시 PSM용 잔고는 0이었습니다. 동명 다른 토큰과 jUSDD 예치 경로는 PSM 시험에 포함하지 않습니다. 근거는 [TRX·jTRX 실증 기록](docs/NILE_A_EVIDENCE.md)과 [PSM 검증 기록](docs/NILE_PSM_EXECUTION.md)에 있습니다.
+The 2,000 USDD deposited into the test wallet used in the PSM verification record had a **different contract address** from the USDD used by the PSM. Therefore, the PSM-compatible balance was 0 at the time of verification. Tokens with the same name but different contracts and the jUSDD deposit path are not included in the PSM test. Evidence is documented in [TRX/jTRX Verification Record](docs/NILE_A_EVIDENCE.md) and [PSM Verification Record](docs/NILE_PSM_EXECUTION.md).
 
-새 Nile 세션은 **100 TRX·7일 뒤 20 TRX 지출** 예시로 시작하며, 날짜별 지출을 최대 10건 입력할 수 있습니다. 지출 보호분을 제외해 운용 상한을 계산합니다. 기존 세션은 원 입력을 보존하고, `7일 뒤 20 TRX 예시 지출 적용` 버튼으로 예시를 선택할 수 있습니다. Nile 테스트 자산을 Mainnet 재원으로 취급하지 않습니다.
+A new Nile session starts with an example of **100 TRX and a planned expense of 20 TRX seven days later**. Up to 10 dated expenses can be entered. The maximum deployable amount is calculated after excluding protected funds reserved for expenses. Existing sessions preserve the original inputs, while the `Apply example expense: 20 TRX in 7 days` button can be used to select the example. Nile test assets are never treated as Mainnet funds.
 
-2026-09-29에는 서버의 실제 NIM 요구 추출에서 보유액·지출액·지출일과 다음 질문 반환을 확인했습니다. 가상 날짜별 배분 보관·목표 감시 표시와 Mainnet 지갑의 읽기 전용 조회 일부도 브라우저에서 확인했습니다. 이 기록과 Nile 실증은 Mainnet 거래 또는 무인 거래의 증거가 아닙니다. 환경별 완료·미완료 상태는 [구현 상태](docs/IMPLEMENTATION_STATUS.md)를 참고해 주세요.
+On September 29, 2026, the live server-side NIM requirement extraction was confirmed to return the holding amount, expense amount, expense date, and follow-up questions. Virtual date-based allocation storage, goal-monitoring indicators, and some read-only Mainnet wallet queries were also verified in the browser. These results and the Nile demonstrations do not constitute evidence of Mainnet transactions or unattended execution. For environment-specific completed and incomplete items, see [Implementation Status](docs/IMPLEMENTATION_STATUS.md).
 
-## ⚙️ 환경 설정
+## ⚙️ Environment Configuration
 
-설정은 로컬 `.env.local`에 보관합니다. 이 파일은 Git 제외 대상이며, 키 값은 문서·Git·채팅에 기록하지 않습니다. 이미 노출된 키는 재사용하지 않습니다.
+Configuration is stored locally in `.env.local`. This file is excluded from Git, and key values must not be recorded in documentation, Git, or chat. Any previously exposed key must not be reused.
 
-| 변수 | 용도 |
+| Variable | Purpose |
 | --- | --- |
-| `NVIDIA_API_KEY` | 서버의 NIM 요구 추출에 사용 |
-| `TRONGRID_API_KEY` | 선택적 RPC 읽기 인증. 읽기 제한을 완화할 수 있으나 계약·시장 검증을 대신하지 않음 |
-| `JUSTLEND_MCP_ENTRY` | 검토된 로컬 JustLend MCP 서버 엔트리의 절대 경로 |
-| `NILE_WALLET_ADDRESS` | `doctor`의 읽기 전용 조회에 사용할 선택적 Nile 주소 |
-| `GWDC_APPROVAL_LEDGER_KEY_HEX` | Nile 승인형 거래에 필요한 원장 암호화 키. 로컬에서 생성한 32바이트 난수의 64자리 hex 값 |
-| `GWDC_APPROVAL_LEDGER_PATH` | 선택적 원장 경로. 기본값은 `tmp/nile-approval.sqlite` |
-| `UI_PORT` · `API_PORT` | 화면·API 포트. 기본값은 각각 `5173` · `8787` |
+| `NVIDIA_API_KEY` | Used by the server for NIM-based requirement extraction |
+| `TRONGRID_API_KEY` | Optional RPC read authentication. May reduce read restrictions but does not replace contract or market verification |
+| `JUSTLEND_MCP_ENTRY` | Absolute path to the reviewed local JustLend MCP server entry |
+| `NILE_WALLET_ADDRESS` | Optional Nile address used for read-only queries by `doctor` |
+| `GWDC_APPROVAL_LEDGER_KEY_HEX` | Encryption key for the ledger used by Nile user-approved transactions. A 64-character hex value representing 32 locally generated random bytes |
+| `GWDC_APPROVAL_LEDGER_PATH` | Optional ledger path. Default: `tmp/nile-approval.sqlite` |
+| `UI_PORT` · `API_PORT` | UI and API ports. Defaults are `5173` and `8787`, respectively |
 
-전체 설정 항목은 [.env.example](.env.example)에 있습니다. 다른 UI 포트를 사용하면 `UI_PORT`도 실제 화면 포트와 맞춰야 API의 로컬 출처 검사를 통과합니다. USDD MCP는 시작 시 로컬 지갑을 생성할 가능성이 있어 자동 실행하지 않으며, PSM은 읽기 전용 RPC를 사용합니다.
+All configuration options are listed in [.env.example](.env.example). If a different UI port is used, `UI_PORT` must match the actual UI port so that the API's local-origin validation succeeds. The USDD MCP is not launched automatically because it may create a local wallet during startup. PSM uses read-only RPC access.
 
-### 🔐 Nile 승인 원장 준비
+### 🔐 Preparing the Nile Approval Ledger
 
-1. `.env.local`에 `GWDC_APPROVAL_LEDGER_KEY_HEX`를 설정합니다.
-2. API를 다시 시작합니다.
-3. `/api/health`에서 `nileApprovalLedgerReady: true`를 확인합니다.
+1. Set `GWDC_APPROVAL_LEDGER_KEY_HEX` in `.env.local`.
+2. Restart the API.
+3. Confirm `nileApprovalLedgerReady: true` at `/api/health`.
 
-키가 없으면 승인 API는 **503**을 반환합니다. 원장 파일은 Git 제외 대상입니다. 키를 잃으면 미확정 서명 원문을 복구할 수 없으므로 시험 도중 키를 교체하지 않습니다.
+If the key is missing, the approval API returns **503**. The ledger file is excluded from Git. If the key is lost, pending signed transaction payloads cannot be recovered, so the key must not be changed during a test session.
 
-`nileApprovalLedgerReady`는 로컬 원장의 준비 여부만 나타냅니다. 실제 지갑·잔액·미리보기·서명·온체인 결과는 각 단계에서 별도로 검증합니다.
+`nileApprovalLedgerReady` indicates only whether the local ledger is ready. The actual wallet, balance, preview, signature, and on-chain result are validated separately at each stage.
 
-| API 기능 표시 | 의미 |
+| API Capability | Meaning |
 | --- | --- |
-| `mainnetExecution: false` | Mainnet 거래 미지원 |
-| `nileExperimentalExecution: true` | Nile 시험 거래 코드 지원 |
-| 지갑·체인 준비 상태 `null` | 서버에서 판단할 수 없어 매 동작 시 확인 |
+| `mainnetExecution: false` | Mainnet transactions are not supported |
+| `nileExperimentalExecution: true` | Nile experimental transaction code is supported |
+| Wallet/chain readiness `null` | The server cannot determine readiness in advance, so it is checked on every action |
 
-위 기능 구분은 `/api/health`와 `/api/capabilities`에서 제공합니다.
+These capability distinctions are exposed through `/api/health` and `/api/capabilities`.
 
-## 🔄 Nile 거래와 복구
+## 🔄 Nile Transactions and Recovery
 
-### ✍️ 승인형 거래 순서
+### ✍️ User-Approved Transaction Flow
 
-1. 👁️ 계약·잔고·수수료 미리보기를 확인합니다.
-2. ✍️ TronLink에서 **지갑 소유 확인 메시지**에 서명합니다.
-3. 🛡️ 서버가 최신 지출 보호·견적·잔액을 재검증하고 거래를 예약합니다.
-4. 🔏 사용자님이 TronLink에서 **별도의 거래 서명**을 진행합니다.
-5. 🔐 서버가 원 txID와 서명 거래 원문을 암호화 원장에 접수합니다.
-6. 📤 브라우저가 원문을 제출합니다. 서버 접수가 실패하면 제출하지 않습니다.
-7. ✅ 원 txID의 **solidified 영수증과 동일 포지션**을 재조회합니다.
+1. 👁️ Review the contract, balance, and fee preview.
+2. ✍️ Sign a **wallet ownership verification message** in TronLink.
+3. 🛡️ The server revalidates the latest protected-expense amount, quote, and balance, then reserves the transaction.
+4. 🔏 The user performs a **separate transaction signature** in TronLink.
+5. 🔐 The server stores the original txID and signed raw transaction in the encrypted ledger.
+6. 📤 The browser submits the raw transaction. If server-side ledger storage fails, the transaction is not submitted.
+7. ✅ The system rechecks the **solidified receipt and matching position** associated with the original txID.
 
-지갑 소유 확인 서명은 거래 서명을 대신하지 않습니다. 경제성 자료가 부족한 jTRX 기술 시험도 계약·활성 시장·자산·계정·실제 예치 수수료를 검증하고, 상세 위험 고지와 사용자님 확인 후에만 서명을 요청합니다. 이를 수익 권고로 표시하지 않습니다.
+The wallet ownership verification signature does not replace the transaction signature. Even for jTRX technical tests where economic data is insufficient, the system verifies the contract, active market, asset, account, and actual deposit fee, and only requests a signature after displaying detailed risk information and receiving user confirmation. It is not presented as a profit recommendation.
 
-방송 수락만으로 성공을 판정하지 않습니다. 환매는 확정 예치의 같은 계정·계획·계약·서버 의도 ID를 확인한 뒤 별도 미리보기·지갑 확인·거래 서명을 거칩니다. 영수증의 실제 수령 TRX까지 검증된 경우에만 회수 흐름을 기록합니다.
+Broadcast acceptance alone is not considered proof of success. Redemption verifies the same account, plan, contract, and server intent ID associated with the confirmed deposit, followed by a separate preview, wallet confirmation, and transaction signature. The recovery flow is recorded only after the actual received TRX has been verified from the receipt.
 
-PSM은 같은 서버 인증·암호화 원장을 사용합니다. **USDD 승인 → USDT 수령 → USDT 승인 → USDD 수령**의 각 단계마다 사용자 확인, TronLink 서명, 원 txID, solidified 영수증, 잔고 재조회가 필요합니다.
+PSM uses the same server authentication and encrypted ledger. Each step of **USDD approval → USDT receipt → USDT approval → USDD receipt** requires user confirmation, a TronLink signature, the original txID, a solidified receipt, and a refreshed balance check.
 
-### 🧯 중단·새로고침 후 복구
+### 🧯 Recovery After Interruption or Refresh
 
-상태가 불명확하면 첫 화면의 **`서버 미해결 거래 확인·복구`**를 사용합니다.
+If the state is unclear, use **`Check and recover unresolved server transactions`** on the first screen.
 
-- **서명 전:** `reserved` 예약의 서버 취소를 확인한 뒤 새 미리보기를 만듭니다.
-- **서명 후:** 보관된 원 txID를 조회합니다. 새 서명이나 재방송을 하지 않습니다.
-- **입력 저장 실패·한국시간 날짜 변경:** 기존 확인·미리보기를 이용한 서명을 차단합니다.
-- **같은 지갑의 다른 탭에 미확정 거래 존재:** 원 txID를 확인할 때까지 새 거래를 차단합니다.
+- **Before signing:** Confirm server cancellation of the `reserved` reservation, then create a new preview.
+- **After signing:** Query the stored original txID. Do not request a new signature or rebroadcast the transaction.
+- **Input save failure or Korea Standard Time date change:** Block signing based on an existing confirmation or preview.
+- **Another tab using the same wallet has an unresolved transaction:** Block new transactions until the original txID has been checked.
 
-브라우저를 닫은 상태의 백그라운드 거래·알림과 무인 실행 B-1/B-2는 지원 범위에 포함되지 않습니다. 단계별 시연은 [시연 대본](docs/DEMO.md)을 참고해 주세요.
+Background transactions and notifications while the browser is closed, as well as unattended B-1/B-2 execution, are outside the supported scope. For a step-by-step demonstration, see the [Demo Script](docs/DEMO.md).
 
-## 🛡️ 저장과 개인정보
+## 🛡️ Storage and Privacy
 
-| 저장·전송 대상 | 처리 방식 |
+| Stored or Transmitted Data | Handling |
 | --- | --- |
-| 가상 입력·확인 버전·선택 계획·감시 기준선·Nile 원 거래 기록 | 버전을 붙여 브라우저 `localStorage`에 저장 |
-| 승인형 거래의 원 의도·서명 거래 | 브라우저 기록과 별도로 로컬 서버의 암호화 SQLite 원장에 보관 |
-| 대화 입력 | 요청 시 서버로 전송. NIM 키가 설정된 경우 NVIDIA로 전송 |
-| 개인키·복구 구문 | 앱에 입력하거나 저장하지 않음 |
+| Virtual inputs, confirmation versions, selected plans, monitoring baselines, and Nile original transaction records | Stored with version information in browser `localStorage` |
+| Original intents and signed transactions for user-approved transactions | Stored separately from browser records in the local server's encrypted SQLite ledger |
+| Conversation input | Sent to the server when requested. If a NIM key is configured, it is also sent to NVIDIA |
+| Private keys and recovery phrases | Never entered into or stored by the app |
 
-서버 승인 세션은 같은 로컬 화면 출처·Nile 계정에 묶인 `HttpOnly`, `SameSite=Strict` 쿠키로 10분간 유지됩니다. API 재시작 후에는 다시 인증해야 하지만, 원장에 접수된 거래 근거는 보존됩니다.
+Server approval sessions are maintained for 10 minutes using `HttpOnly`, `SameSite=Strict` cookies bound to the same local UI origin and Nile account. Re-authentication is required after an API restart, but transaction evidence already stored in the ledger is preserved.
 
-## 🧰 개발·검증 명령
+## 🧰 Development and Verification Commands
 
-| 작업 | macOS | Windows · PowerShell |
+| Task | macOS | Windows · PowerShell |
 | --- | --- | --- |
-| 🖥️ 개발 서버 | `./scripts/run run dev` | `npm run dev` |
-| 🧪 테스트 | `./scripts/run run test` | `npm run test` |
-| 🏗️ 타입 검사·빌드 | `./scripts/run run build` | `npm run build` |
-| ✅ 테스트·타입 검사·빌드 전체 | `./scripts/run run check` | `npm run check` |
-| 🩺 실제 연결 진단 | `./scripts/run run doctor` | `npm run doctor` |
+| 🖥️ Development server | `./scripts/run run dev` | `npm run dev` |
+| 🧪 Tests | `./scripts/run run test` | `npm run test` |
+| 🏗️ Type check and build | `./scripts/run run build` | `npm run build` |
+| ✅ Full test, type check, and build | `./scripts/run run check` | `npm run check` |
+| 🩺 Live connection diagnostics | `./scripts/run run doctor` | `npm run doctor` |
 
-Vite가 화면 변경을 반영하고, 개발 서버는 `server/`·`shared/`의 지정된 디렉터리에서 코드 변경을 감지해 API를 다시 시작합니다. 환경 설정을 변경한 경우에는 직접 재시작합니다.
+Vite reflects UI changes, while the development server watches configured directories under `server/` and `shared/` and restarts the API when code changes are detected. Environment configuration changes require a manual restart.
 
-`doctor`는 공식 읽기·키·계약 검증 상태를 `ready`, `unknown`, `unavailable`로 구분합니다. 네트워크가 없을 때 라이브 값을 만들어 내지 않습니다.
+`doctor` classifies official read access, key status, and contract verification as `ready`, `unknown`, or `unavailable`. It does not fabricate live values when the network is unavailable.
 
-기술 구성은 **React · Vite · TypeScript**, 테스트는 **Vitest**입니다. 의존성은 npm과 `package-lock.json`으로 관리하며, 자산 금액과 온체인 정수는 문자열 및 Decimal/BigInt로 처리합니다.
+The technical stack is **React · Vite · TypeScript**, with **Vitest** for testing. Dependencies are managed with npm and `package-lock.json`. Asset amounts and on-chain integer values are handled using strings and Decimal/BigInt.
 
-## 📚 관련 문서
+## 📚 Related Documents
 
-| 문서 | 내용 |
+| Document | Description |
 | --- | --- |
-| 🧭 [프로젝트 원계획](docs/PROJECT_PLAN.md) | 목표와 체인 분리 원칙 |
-| 🧱 [상세 구현 계획](docs/IMPLEMENTATION_PLAN.md) | 기능별 구현 계획 |
-| 🔗 [공식 출처](docs/SOURCES.md) | 공식 데이터·계약 자료 |
-| 📌 [구현 상태](docs/IMPLEMENTATION_STATUS.md) | 환경 상태와 완료·미완료 증거 |
-| ✅ [Nile 승인형 실증 증거](docs/NILE_A_EVIDENCE.md) | TRX·jTRX 실제 거래 검증 기록 |
-| 🧪 [Nile PSM 구현·검증 계획](docs/NILE_PSM_EXECUTION.md) | PSM 단계와 토큰 확인 기록 |
-| 🎬 [시연 대본](docs/DEMO.md) | Mainnet 가정 계산과 Nile 시험 시연 순서 |
+| 🧭 [Original Project Plan](docs/PROJECT_PLAN.md) | Project goals and chain-separation principles |
+| 🧱 [Detailed Implementation Plan](docs/IMPLEMENTATION_PLAN.md) | Feature-by-feature implementation plan |
+| 🔗 [Official Sources](docs/SOURCES.md) | Official data and contract references |
+| 📌 [Implementation Status](docs/IMPLEMENTATION_STATUS.md) | Environment status and evidence for completed/incomplete features |
+| ✅ [Nile User-Approved Verification Evidence](docs/NILE_A_EVIDENCE.md) | Verified TRX/jTRX live transaction records |
+| 🧪 [Nile PSM Implementation and Verification Plan](docs/NILE_PSM_EXECUTION.md) | PSM transaction stages and token verification records |
+| 🎬 [Demo Script](docs/DEMO.md) | Mainnet scenario calculation and Nile test demonstration flow |
