@@ -1,0 +1,18 @@
+# Dependencies and generated output.
+node_modules/
+.pnpm-store/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local credentials; keep the public configuration template.
+.env
+.env.*
+!.env.example
+
+# Local approval ledgers and temporary artifacts.
+tmp/
+
+# Operating-system files.
+.DS_Store
+Thumbs.db
